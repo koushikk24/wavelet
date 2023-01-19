@@ -51,6 +51,7 @@ class SearchHandler implements URLHandler {
 
             // String to add to list
             String add = url.getQuery().substring(2);
+            System.out.println(add);
 
             // check if string exists
             if (!add.isEmpty()) {
@@ -68,6 +69,7 @@ class SearchHandler implements URLHandler {
 
             // The query
             String query = url.getQuery().substring(2);
+            System.out.println(query);
 
             // search through the list and find matches
             ArrayList<String> matches = new ArrayList<>();
