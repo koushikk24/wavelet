@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Koushik K.
@@ -36,7 +38,7 @@ public class SearchEngine {
 class SearchHandler implements URLHandler {
 
     // list of strings
-    ArrayList<String> strings = new ArrayList<>();
+    Set<String> strings = new HashSet<>();
 
     /**
      * Handles a URL request
@@ -69,32 +71,24 @@ class SearchHandler implements URLHandler {
 
             // The query
             String query = url.getQuery().substring(2);
-            System.out.println(query);
 
             // search through the list and find matches
-            ArrayList<String> matches = new ArrayList<>();
+            StringBuilder stringBuilder = new StringBuilder();
             for (String s : strings) {
 
                 // match
                 if (s.contains(query)) {
 
                     // add to matches
-                    matches.add(s);
-                    System.out.println(s);
+                    // build
+                    stringBuilder.append(s)
+                            .append(", ");
                 }
             }
 
             // create string output
-            StringBuilder stringBuilder = new StringBuilder();
-            for (String m : matches) {
-
-                // build
-                stringBuilder.append(m)
-                    .append(", ");
-            }
-
             // remove last comma
-            return stringBuilder.toString().substring(stringBuilder.length() - 2);
+            return stringBuilder.substring(stringBuilder.length() - 2);
         }
 
         // invalid path
