@@ -80,6 +80,7 @@ class SearchHandler implements URLHandler {
 
                     // add to matches
                     matches.add(s);
+                    System.out.println(s);
                 }
             }
 
