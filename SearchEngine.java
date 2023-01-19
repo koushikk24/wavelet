@@ -64,7 +64,7 @@ class SearchHandler implements URLHandler {
             else {
 
                 // notify user the correct args
-                return "Please enter an argument!";
+                return "Please enter the correct arguments!";
             }
 
             // notify user that the item was added to the list
@@ -109,7 +109,7 @@ class SearchHandler implements URLHandler {
             else {
 
                 // notify user the correct args
-                return "Please enter an argument!";
+                return "Please enter the correct arguments!";
             }
         }
 
