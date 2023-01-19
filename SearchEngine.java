@@ -91,7 +91,7 @@ class SearchHandler implements URLHandler {
             }
 
             // remove last comma
-            return stringBuilder.substring(stringBuilder.length() - 2, stringBuilder.length() - 1);
+            return stringBuilder.toString().substring(stringBuilder.length() - 2);
         }
 
         // invalid path
