@@ -54,7 +54,7 @@ class SearchHandler implements URLHandler {
             String[] add = url.getQuery().split("=");
 
             // check if string exists
-            if (add.length == 2) {
+            if (add[0].equalsIgnoreCase("s") && add.length == 2) {
 
                 // add to list
                 strings.add(add[1]);
@@ -78,7 +78,7 @@ class SearchHandler implements URLHandler {
             String[] query = url.getQuery().split("=");
 
             // check if query exists
-            if (query.length == 2) {
+            if (query[0].equalsIgnoreCase("s") && query.length == 2) {
 
                 // search through the list and find matches
                 StringBuilder stringBuilder = new StringBuilder();
