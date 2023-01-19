@@ -51,7 +51,7 @@ class SearchHandler implements URLHandler {
         if (url.getPath().equalsIgnoreCase("/add")) {
 
             // String to add to list
-            String add = url.getQuery().substring(2);
+            String add = url.getQuery().split("=")[1];
 
             // check if string exists
             if (!add.isEmpty()) {
@@ -59,7 +59,7 @@ class SearchHandler implements URLHandler {
                 // add to list
                 strings.add(add);
             }
-            
+
             // no arg
             else {
 
@@ -75,7 +75,7 @@ class SearchHandler implements URLHandler {
         else if (url.getPath().equalsIgnoreCase("/search")) {
 
             // The query
-            String query = url.getQuery().substring(2);
+            String query = url.getQuery().split("=")[1];
 
             // check if query exists
             if (!query.isEmpty()) {
@@ -98,8 +98,8 @@ class SearchHandler implements URLHandler {
                 // remove last comma
                 if (stringBuilder.length() > 2) {
                     return stringBuilder.substring(0, stringBuilder.length() - 2);
-                } 
-                
+                }
+
                 else {
                     return "No result found!";
                 }
