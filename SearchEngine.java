@@ -59,6 +59,13 @@ class SearchHandler implements URLHandler {
                 // add to list
                 strings.add(add);
             }
+            
+            // no arg
+            else {
+
+                // notify user the correct args
+                return "Please enter an argument!";
+            }
 
             // notify user that the item was added to the list
             return "\"" + add + "\"" + " was added to the list!";
@@ -70,28 +77,39 @@ class SearchHandler implements URLHandler {
             // The query
             String query = url.getQuery().substring(2);
 
-            // search through the list and find matches
-            StringBuilder stringBuilder = new StringBuilder();
-            for (String s : strings) {
+            // check if query exists
+            if (!query.isEmpty()) {
 
-                // match
-                if (s.contains(query)) {
+                // search through the list and find matches
+                StringBuilder stringBuilder = new StringBuilder();
+                for (String s : strings) {
 
-                    // add to matches
-                    // build
-                    stringBuilder.append(s)
-                            .append(", ");
+                    // match
+                    if (s.contains(query)) {
+
+                        // add to matches
+                        // build
+                        stringBuilder.append(s)
+                                .append(", ");
+                    }
+                }
+
+                // create string output
+                // remove last comma
+                if (stringBuilder.length() > 2) {
+                    return stringBuilder.substring(0, stringBuilder.length() - 2);
+                } 
+                
+                else {
+                    return "No result found!";
                 }
             }
 
-            // create string output
-            // remove last comma
-            if (stringBuilder.length() > 1) {
-                return stringBuilder.substring(0, stringBuilder.length() - 1);
-            }
-            
+            // no arg
             else {
-                return "No result found!";
+
+                // notify user the correct args
+                return "Please enter an argument!";
             }
         }
 
