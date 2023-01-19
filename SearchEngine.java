@@ -47,7 +47,7 @@ class SearchHandler implements URLHandler {
     public String handleRequest(URI url) {
 
         // add to list URL
-        if (url.getPath().startsWith("/add?s=")) {
+        if (url.getPath().equalsIgnoreCase("add")) {
 
             // String to add to list
             String add = url.getPath().substring(7);
@@ -64,7 +64,7 @@ class SearchHandler implements URLHandler {
         }
 
         // query
-        else if (url.getPath().startsWith("/search?s=")) {
+        else if (url.getPath().equalsIgnoreCase("search")) {
 
             // The query
             String query = url.getPath().substring(10);
