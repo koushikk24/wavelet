@@ -51,13 +51,13 @@ class SearchHandler implements URLHandler {
         if (url.getPath().equalsIgnoreCase("/add")) {
 
             // String to add to list
-            String add = url.getQuery().split("=")[1];
+            String[] add = url.getQuery().split("=");
 
             // check if string exists
-            if (!add.isEmpty()) {
+            if (add.length == 2) {
 
                 // add to list
-                strings.add(add);
+                strings.add(add[1]);
             }
 
             // no arg
@@ -75,17 +75,17 @@ class SearchHandler implements URLHandler {
         else if (url.getPath().equalsIgnoreCase("/search")) {
 
             // The query
-            String query = url.getQuery().split("=")[1];
+            String[] query = url.getQuery().split("=");
 
             // check if query exists
-            if (!query.isEmpty()) {
+            if (query.length == 2) {
 
                 // search through the list and find matches
                 StringBuilder stringBuilder = new StringBuilder();
                 for (String s : strings) {
 
                     // match
-                    if (s.contains(query)) {
+                    if (s.contains(query[1])) {
 
                         // add to matches
                         // build
