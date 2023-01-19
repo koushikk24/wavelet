@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -78,8 +77,6 @@ class SearchHandler implements URLHandler {
                 // match
                 if (s.contains(query)) {
 
-                    System.out.println(s);
-
                     // add to matches
                     // build
                     stringBuilder.append(s)
@@ -89,7 +86,13 @@ class SearchHandler implements URLHandler {
 
             // create string output
             // remove last comma
-            return stringBuilder.toString();
+            if (stringBuilder.length() > 1) {
+                return stringBuilder.substring(0, stringBuilder.length() - 1);
+            }
+            
+            else {
+                return "No result found!";
+            }
         }
 
         // invalid path
