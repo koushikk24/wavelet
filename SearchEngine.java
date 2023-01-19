@@ -50,7 +50,7 @@ class SearchHandler implements URLHandler {
         if (url.getPath().equalsIgnoreCase("/add")) {
 
             // String to add to list
-            String add = url.getPath().substring(7);
+            String add = url.getQuery().substring(2);
 
             // check if string exists
             if (!add.isEmpty()) {
@@ -67,7 +67,7 @@ class SearchHandler implements URLHandler {
         else if (url.getPath().equalsIgnoreCase("/search")) {
 
             // The query
-            String query = url.getPath().substring(10);
+            String query = url.getQuery().substring(2);
 
             // search through the list and find matches
             ArrayList<String> matches = new ArrayList<>();
@@ -96,7 +96,7 @@ class SearchHandler implements URLHandler {
 
         // invalid path
         else {
-            System.out.println("Path: " + url.getPath());
+            System.out.println("Path: " + url.getPath() + ", Query: " + url.getQuery());
             return "404 Not Found!";
         }
     }
