@@ -68,7 +68,7 @@ class SearchHandler implements URLHandler {
             }
 
             // notify user that the item was added to the list
-            return "\"" + add + "\"" + " was added to the list!";
+            return "\"" + add[1] + "\"" + " was added to the list!";
         }
 
         // query
