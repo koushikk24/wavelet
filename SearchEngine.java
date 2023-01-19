@@ -10,13 +10,13 @@ public class SearchEngine {
 
     /**
      * Main method
-     * @param args
+     * @param args The command line arguments
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
 
         // no port number
-        if (args.length == 0){
+        if (args.length == 0) {
             System.out.println("Missing port number! Try any number between 1024 to 49151");
             return;
         }
@@ -25,7 +25,7 @@ public class SearchEngine {
         int port = Integer.parseInt(args[0]);
 
         // start the server
-        Server.start(port, new Handler());
+        Server.start(port, new SearchHandler());
     }
 }
 
@@ -33,7 +33,7 @@ public class SearchEngine {
  * @author Koushik K.
  * @since 01/19/2023
  */
-class SearchHandler {
+class SearchHandler implements URLHandler {
 
     // list of strings
     ArrayList<String> strings = new ArrayList<>();
@@ -43,6 +43,7 @@ class SearchHandler {
      * @param url The requested URL
      * @return The response
      */
+    @Override
     public String handleRequest(URI url) {
 
         // add to list URL
