@@ -53,7 +53,6 @@ class SearchHandler implements URLHandler {
 
             // String to add to list
             String add = url.getQuery().substring(2);
-            System.out.println(add);
 
             // check if string exists
             if (!add.isEmpty()) {
@@ -78,6 +77,8 @@ class SearchHandler implements URLHandler {
 
                 // match
                 if (s.contains(query)) {
+
+                    System.out.println(s);
 
                     // add to matches
                     // build
