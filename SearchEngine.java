@@ -88,7 +88,7 @@ class SearchHandler implements URLHandler {
 
             // create string output
             // remove last comma
-            return stringBuilder.substring(stringBuilder.length() - 2);
+            return stringBuilder.toString();
         }
 
         // invalid path
