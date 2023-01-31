@@ -58,7 +58,7 @@ class Handler implements URLHandler {
 
                 // add to list
                 // build
-                stringBuilder.append(add[1])
+                message.append(add[1])
                         .append("\n");
             }
 
