@@ -7,7 +7,7 @@ import java.util.Set;
  * @author Koushik K.
  * @since 01/19/2023
  */
-public class SearchEngine {
+public class StringServer {
 
     /**
      * Main method
@@ -26,7 +26,7 @@ public class SearchEngine {
         int port = Integer.parseInt(args[0]);
 
         // start the server
-        Server.start(port, new SearchHandler());
+        Server.start(port, new Handler());
     }
 }
 
@@ -34,10 +34,10 @@ public class SearchEngine {
  * @author Koushik K.
  * @since 01/19/2023
  */
-class SearchHandler implements URLHandler {
+class Handler implements URLHandler {
 
     // list of strings
-    Set<String> strings = new HashSet<>();
+    StringBuilder message = new StringBuilder();
 
     /**
      * Handles a URL request
@@ -48,7 +48,7 @@ class SearchHandler implements URLHandler {
     public String handleRequest(URI url) {
 
         // add to list URL
-        if (url.getPath().equalsIgnoreCase("/add")) {
+        if (url.getPath().equalsIgnoreCase("/add-message")) {
 
             // String to add to list
             String[] add = url.getQuery().split("=");
@@ -57,7 +57,9 @@ class SearchHandler implements URLHandler {
             if (add[0].equalsIgnoreCase("s") && add.length == 2) {
 
                 // add to list
-                strings.add(add[1]);
+                // build
+                stringBuilder.append(add[1])
+                        .append("\n");
             }
 
             // no arg
@@ -67,50 +69,8 @@ class SearchHandler implements URLHandler {
                 return "Please enter the correct arguments!";
             }
 
-            // notify user that the item was added to the list
-            return "\"" + add[1] + "\"" + " was added to the list!";
-        }
-
-        // query
-        else if (url.getPath().equalsIgnoreCase("/search")) {
-
-            // The query
-            String[] query = url.getQuery().split("=");
-
-            // check if query exists
-            if (query[0].equalsIgnoreCase("s") && query.length == 2) {
-
-                // search through the list and find matches
-                StringBuilder stringBuilder = new StringBuilder();
-                for (String s : strings) {
-
-                    // match
-                    if (s.contains(query[1])) {
-
-                        // add to matches
-                        // build
-                        stringBuilder.append(s)
-                                .append(", ");
-                    }
-                }
-
-                // create string output
-                // remove last comma
-                if (stringBuilder.length() > 2) {
-                    return stringBuilder.substring(0, stringBuilder.length() - 2);
-                }
-
-                else {
-                    return "No result found!";
-                }
-            }
-
-            // no arg
-            else {
-
-                // notify user the correct args
-                return "Please enter the correct arguments!";
-            }
+            // full message
+            return message.toString();
         }
 
         // invalid path
